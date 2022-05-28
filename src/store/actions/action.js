@@ -14,8 +14,8 @@ export const createTodo = (text) => ({
 })
 
 export const deleteTodo = (text) => ({
-    type: CREATE_TODO,
-    payload:{ text, isCompleted: false }
+    type: DELETE_TODO,
+    payload:{ text }
 
 })
 

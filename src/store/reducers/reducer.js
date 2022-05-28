@@ -1,4 +1,5 @@
 import { CREATE_TODO } from './../actions/action'
+import { DELETE_TODO } from './../actions/action';
 
 /**
  * state //this is overall store, user define
@@ -14,7 +15,15 @@ export const todos = (state = [], action) => {
                 isCompleted: action.payload.isCompleted
             };
             return [...state, newTodo]
+        };
+
+        case DELETE_TODO: {
+            
         }
+
+        
+
+        
             
             
         default:
