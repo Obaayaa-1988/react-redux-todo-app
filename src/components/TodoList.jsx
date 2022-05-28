@@ -1,6 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
 import TodoForm from "./TodoForm";
+import { connect } from "react-redux";
 // import  styled  from 'styled-components';
 
 // const Wrapper = styled.div`
@@ -12,7 +13,7 @@ import TodoForm from "./TodoForm";
 // `
 
 
-const TodoList = ({ todos = [{text:"jogging"}] }) => {
+const TodoList = ({ todos }) => {
     return (
         <div className="">
             <TodoForm />
@@ -21,9 +22,16 @@ const TodoList = ({ todos = [{text:"jogging"}] }) => {
             ))}
         </div>
     );
-}
+};
 
-export default TodoList;
+const mapStateToProps = (state) => ({
+    todos: state.todos
+
+
+})
+
+
+export default connect(mapStateToProps) (TodoList);
 
 
 

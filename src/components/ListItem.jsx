@@ -10,6 +10,7 @@ position: relative;
 padding: 6px;
 display: flex;
 margin-left:  11rem;
+margin-bottom: 2rem;
 
 align-items: center;
 justify-content: space-between;
@@ -47,7 +48,7 @@ const ListItem = ({ task }) => {
             <Wrapper>
             <h3 >{task.text}</h3>
             <BtnContainer>
-            <Button completed>change to completed</Button>
+            <Button completed>Change To Completed</Button>
             <Button delete>Delete</Button>
             </BtnContainer>
             </Wrapper>

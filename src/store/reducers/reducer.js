@@ -1,11 +1,12 @@
 import { CREATE_TODO } from './../actions/action'
 
 /**
- * state //this is overall store
+ * state //this is overall store, user define
  * action //contains the type and payload or data
  */
 
 export const todos = (state = [], action) => {
+
     switch (action.type) {
         case CREATE_TODO: {
             const newTodo = {
@@ -16,9 +17,8 @@ export const todos = (state = [], action) => {
         }
             
             
-    
         default:
-            return state
+            return state;
     }
 }
 

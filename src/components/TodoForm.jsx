@@ -16,8 +16,8 @@ const TodoForm = ({ Alltodos, addTodo }) => {
 
     return (
         <div className={ FormStyle.todo_form}>
-            <input type="text" className={FormStyle.todo_input} onChange={e => setInputValue(e.target.value)}/>
-            <button className={FormStyle.todo_btn} onClick={() => addTodo(inputValue)}>Add Task</button>
+            <input type="text" className={FormStyle.todo_input} value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+            <button className={FormStyle.todo_btn} onClick={() => { addTodo(inputValue); setInputValue('') }}>Add Task</button>
         </div>
     )
 }
@@ -30,6 +30,7 @@ const mapStateToProps = (state) => ({
 })
 
 //it gives the opportunity to dispatch an action to the reducer
+//an the action we want to dispatch is a text
 const mapDispatchToProps = (dispatch) => ({
     addTodo: text => dispatch(createTodo(text))
 
