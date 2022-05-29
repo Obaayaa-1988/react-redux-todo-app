@@ -18,7 +18,8 @@ export const todos = (state = [], action) => {
         };
 
         case DELETE_TODO: {
-            
+            const clearTodo = state.filter((list) => list.text !== action.payload.text)
+            return[...clearTodo]
         }
 
         

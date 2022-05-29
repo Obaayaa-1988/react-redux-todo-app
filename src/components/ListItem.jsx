@@ -1,6 +1,9 @@
 import React from "react";
 import  styled  from 'styled-components';
 import  { css } from 'styled-components';
+import { connect } from "react-redux";
+import { deleteTodo } from "../store/actions/action";
+import { useDispatch } from "react-redux";
 
 
 const Wrapper = styled.div`
@@ -42,14 +45,17 @@ color: white;
 `
 
 
-const ListItem = ({ task }) => {
+const ListItem = ({ task, text}) => {
+    const dispatch = useDispatch()
     return(
         <div className="item-container">
             <Wrapper>
             <h3 >{task.text}</h3>
             <BtnContainer>
             <Button completed>Change To Completed</Button>
-            <Button delete>Delete</Button>
+
+
+            <Button delete onClick={() => { dispatch(deleteTodo(task.text))}}>Delete</Button>
             </BtnContainer>
             </Wrapper>
 
@@ -57,6 +63,15 @@ const ListItem = ({ task }) => {
     )
 }
 
-export default ListItem;
+// const mapDispatchToProps = (dispatch) => ({
+//     removeTodo: text => dispatch(deleteTodo(text))
+
+
+// })
+
+export default  ListItem;
+
+
+
 
 //a single todo item can be deleted singly and pending task turn to completed
