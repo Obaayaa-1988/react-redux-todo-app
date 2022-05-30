@@ -1,4 +1,4 @@
-import { CREATE_TODO } from './../actions/action'
+import { COMPLETE_TODO, CREATE_TODO } from './../actions/action'
 import { DELETE_TODO } from './../actions/action';
 
 /**
@@ -22,9 +22,21 @@ export const todos = (state = [], action) => {
             return[...clearTodo]
         }
 
-        
+        // case COMPLETE_TODO: {
+        //     if(state.isCompleted !== action.payload.isCompleted){
+        //         return state
+        //     } 
+        // }
 
-        
+        case COMPLETE_TODO:{
+            return state.map(task => {
+                if(task.text === action.payload.text){
+                    return { ...task, isCompleted: !task.isCompleted }
+                }
+
+                return task;
+            })
+        }
             
             
         default:

@@ -1,6 +1,7 @@
 //so we can make changes to it anytime
 export const CREATE_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETED_TODO';
+export const COMPLETE_TODO = 'COMPLETED_TODO'
 
 //exporting createtodo
 /* action creators return an object containing type and payload */
@@ -17,6 +18,11 @@ export const deleteTodo = (text) => ({
     type: DELETE_TODO,
     payload:{ text }
 
+})
+
+export const displayTodo = (text) => ({
+    type: COMPLETE_TODO,
+    payload: {text}
 })
 
 //payload{text} is returning an object es6 syntax for single items in an object

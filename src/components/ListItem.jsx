@@ -3,7 +3,8 @@ import  styled  from 'styled-components';
 import  { css } from 'styled-components';
 import { connect } from "react-redux";
 import { deleteTodo } from "../store/actions/action";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { displayTodo } from "../store/actions/action";
 
 
 const Wrapper = styled.div`
@@ -45,17 +46,28 @@ color: white;
 `
 
 
-const ListItem = ({ task, text}) => {
-    const dispatch = useDispatch()
+const ListItem = ({ task, removeTodo, updateTodo}) => {
+
+
+
+
     return(
         <div className="item-container">
+            
             <Wrapper>
             <h3 >{task.text}</h3>
             <BtnContainer>
-            <Button completed>Change To Completed</Button>
+            {
+                task.isCompleted ?  <Button  completed onClick={() => { updateTodo(task.text)}}>Change To InCompleted
+                
+                </Button> : (
+                    <Button  completed onClick={() => { updateTodo(task.text)}}>Change To Completed</Button>
 
 
-            <Button delete onClick={() => { dispatch(deleteTodo(task.text))}}>Delete</Button>
+                )} 
+
+
+            <Button delete onClick={() => { removeTodo(task.text)}}>Delete</Button>
             </BtnContainer>
             </Wrapper>
 
@@ -63,13 +75,19 @@ const ListItem = ({ task, text}) => {
     )
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//     removeTodo: text => dispatch(deleteTodo(text))
 
 
-// })
 
-export default  ListItem;
+const mapDispatchToProps = (dispatch) => ({
+    removeTodo: text => dispatch(deleteTodo(text)),
+
+    updateTodo: text => dispatch(displayTodo(text))
+
+
+
+})
+
+export default connect(null, mapDispatchToProps)(ListItem);
 
 
 
