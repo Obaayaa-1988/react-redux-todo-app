@@ -4,6 +4,8 @@ import { DELETE_TODO } from './../actions/action';
 /**
  * state //this is overall store, user define
  * action //contains the type and payload or data
+ * //reducer gives details of what the state needs to perform
+ * 
  */
 
 export const todos = (state = [], action) => {

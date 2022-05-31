@@ -4,9 +4,10 @@ export const DELETE_TODO = 'DELETED_TODO';
 export const COMPLETE_TODO = 'COMPLETED_TODO'
 
 //exporting createtodo
-/* action creators return an object containing type and payload */
+/* action creators return an object containing type and payload, they are functions they contain an object */
 //action describes something that will happen to our application in this the words(text) input into the input fiels by our app users
 //returning an object in a function
+//actions are dispatch to the reducer
 
 export const createTodo = (text) => ({
     type: CREATE_TODO,
