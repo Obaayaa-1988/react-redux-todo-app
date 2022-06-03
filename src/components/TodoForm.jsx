@@ -21,6 +21,7 @@ const TodoForm = ({ Alltodos, addTodo }) => {
         </div>
     )
 }
+
 //mapstateprop it will go to the store and fetch current state we have
 //anytime a todo is pushed it will come here(our state is an array)
 const mapStateToProps = (state) => ({

@@ -26,4 +26,13 @@ export const displayTodo = (text) => ({
     payload: {text}
 })
 
+
+//action for thunk asyncronous request 
+export const FETCH_TODOS = 'FETCH_TODOS'
+
+export const getTodos = (data) => ({
+    type: FETCH_TODOS,
+    payload: { data }
+});
+
 //payload{text} is returning an object es6 syntax for single items in an object

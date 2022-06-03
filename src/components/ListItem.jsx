@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { deleteTodo } from "../store/actions/action";
 // import { useDispatch } from "react-redux";
 import { displayTodo } from "../store/actions/action";
+import { fetchTodos, testingThunk } from "../store/thunk/thunk";
 
 
 const Wrapper = styled.div`
@@ -79,7 +80,7 @@ const ListItem = ({ task, removeTodo, updateTodo}) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    removeTodo: text => dispatch(deleteTodo(text)),
+    removeTodo: () => dispatch(fetchTodos()),
 
     updateTodo: text => dispatch(displayTodo(text))
 

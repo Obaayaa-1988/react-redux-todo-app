@@ -18,7 +18,7 @@ const TodoList = ({ todos }) => {
         <div className="">
             <TodoForm />
 
-            {todos.map((todo, key )=> (< ListItem task={todo} key={key}  /> 
+            { todos.map((todo, key ) => (< ListItem task={todo} key={key}  /> 
             ))}
         </div>
     );

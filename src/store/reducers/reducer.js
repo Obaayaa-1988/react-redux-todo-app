@@ -1,5 +1,6 @@
 import { COMPLETE_TODO, CREATE_TODO } from './../actions/action'
 import { DELETE_TODO } from './../actions/action';
+import { FETCH_TODOS } from './../actions/action';
 
 /**
  * state //this is overall store, user define
@@ -21,7 +22,7 @@ export const todos = (state = [], action) => {
 
         case DELETE_TODO: {
             const clearTodo = state.filter((list) => list.text !== action.payload.text)
-            return[...clearTodo]
+            return [...clearTodo]
         }
 
         // case COMPLETE_TODO: {
@@ -30,17 +31,22 @@ export const todos = (state = [], action) => {
         //     } 
         // }
 
-        case COMPLETE_TODO:{
+        case COMPLETE_TODO: {
             return state.map(task => {
-                if(task.text === action.payload.text){
+                if (task.text === action.payload.text) {
                     return { ...task, isCompleted: !task.isCompleted }
                 }
 
                 return task;
             })
         }
-            
-            
+
+        case FETCH_TODOS: {
+            console.log(action.payload)
+            return state
+        }
+
+
         default:
             return state;
     }
