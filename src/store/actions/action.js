@@ -9,9 +9,9 @@ export const COMPLETE_TODO = 'COMPLETED_TODO'
 //returning an object in a function
 //actions are dispatch to the reducer
 
-export const createTodo = (text) => ({
+export const createTodo = (todo) => ({
     type: CREATE_TODO,
-    payload:{ text, isCompleted: false }
+    payload:{ todo }
 
 })
 
@@ -28,11 +28,40 @@ export const displayTodo = (text) => ({
 
 
 //action for thunk asyncronous request 
-export const FETCH_TODOS = 'FETCH_TODOS'
+export const LOAD_TODOS = 'LOAD_TODOS'
 
 export const getTodos = (data) => ({
-    type: FETCH_TODOS,
+    type: LOAD_TODOS,
     payload: { data }
 });
+
+
+
+
+export const TODOS_LOADING = "TODOS_LOADING"
+
+export const loadingTodosInProgress = () => ({
+    type: TODOS_LOADING
+})
+
+
+export const TODOS_SUCCESS ="TODOS_SUCCESS"
+
+export const todosSuccessful = (todos,) => ({
+    type: TODOS_SUCCESS,
+    payload: { todos }
+})
+
+
+
+
+export const TODOS_FAILURE = "TODOS_FAILURE"
+
+export const todosFailure = () => ({
+    type: TODOS_FAILURE
+})
+
+
+
 
 //payload{text} is returning an object es6 syntax for single items in an object

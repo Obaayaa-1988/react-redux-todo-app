@@ -69,6 +69,8 @@ const ListItem = ({ task, removeTodo, updateTodo}) => {
 
 
             <Button delete onClick={() => { removeTodo(task.text)}}>Delete</Button>
+            {/* <Button delete onClick={() => { removeTodo()}}>Delete</Button> */}
+
             </BtnContainer>
             </Wrapper>
 
@@ -80,7 +82,7 @@ const ListItem = ({ task, removeTodo, updateTodo}) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    removeTodo: () => dispatch(fetchTodos()),
+    removeTodo: (text) => dispatch(deleteTodo(text)),
 
     updateTodo: text => dispatch(displayTodo(text))
 

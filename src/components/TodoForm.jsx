@@ -3,10 +3,12 @@ import { useState } from "react";
 import FormStyle from './TodoForm.module.css';
 import { connect } from "react-redux";
 import { createTodo } from "../store/actions/action";
+import { addTodo } from "../store/thunk/thunk";
 
 
 
-const TodoForm = ({ Alltodos, addTodo }) => {
+
+const TodoForm = ({ Alltodos, plusTodo }) => {
 
 
     const [inputValue, setInputValue] = useState("")
@@ -17,7 +19,7 @@ const TodoForm = ({ Alltodos, addTodo }) => {
     return (
         <div className={ FormStyle.todo_form}>
             <input type="text" className={FormStyle.todo_input} value={inputValue} onChange={e => setInputValue(e.target.value)}/>
-            <button className={FormStyle.todo_btn} onClick={() => { addTodo(inputValue); setInputValue('') }}>Add Task</button>
+            <button className={FormStyle.todo_btn} onClick={() => { plusTodo(inputValue); setInputValue('') }}>Add Task</button>
         </div>
     )
 }
@@ -33,7 +35,7 @@ const mapStateToProps = (state) => ({
 //it gives the opportunity to dispatch an action to the reducer
 //an the action we want to dispatch is a text
 const mapDispatchToProps = (dispatch) => ({
-    addTodo: text => dispatch(createTodo(text))
+    plusTodo: text => dispatch(addTodo(text))
 
 
 })

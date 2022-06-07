@@ -1,6 +1,6 @@
 import { COMPLETE_TODO, CREATE_TODO } from './../actions/action'
 import { DELETE_TODO } from './../actions/action';
-import { FETCH_TODOS } from './../actions/action';
+import { LOAD_TODOS, TODOS_LOADING, TODOS_SUCCESS, TODOS_FAILURE } from './../actions/action';
 
 /**
  * state //this is overall store, user define
@@ -12,13 +12,22 @@ import { FETCH_TODOS } from './../actions/action';
 export const todos = (state = [], action) => {
 
     switch (action.type) {
+
+           
         case CREATE_TODO: {
-            const newTodo = {
-                text: action.payload.text,
-                isCompleted: action.payload.isCompleted
-            };
-            return [...state, newTodo]
+
+            return [...state, action.payload.todo]
         };
+
+
+        // case CREATE_TODO: {
+        //     const newTodo = {
+        //         text: action.payload.text,
+        //         isCompleted: action.payload.isCompleted
+        //     };
+        //     return [...state, newTodo]
+        // };
+
 
         case DELETE_TODO: {
             const clearTodo = state.filter((list) => list.text !== action.payload.text)
@@ -41,9 +50,9 @@ export const todos = (state = [], action) => {
             })
         }
 
-        case FETCH_TODOS: {
-            console.log(action.payload)
-            return state
+        case LOAD_TODOS: {
+            console.log(action)
+            return action.payload.data
         }
 
 
@@ -52,6 +61,34 @@ export const todos = (state = [], action) => {
     }
 }
 
+
+//second reducer for thunk connection
+
+export const loading = (isLoading = false, action) => {
+    switch (action.type) {
+        case TODOS_LOADING: {
+            return isLoading = true;
+
+        }
+
+        case TODOS_SUCCESS: {
+            return {
+                isLoading: false,
+                data: action.payload.todos
+            }
+        }
+
+        case TODOS_FAILURE: {
+
+        }
+
+
+        default: 
+        return isLoading
+    }
+    
+   
+}
 
 
 

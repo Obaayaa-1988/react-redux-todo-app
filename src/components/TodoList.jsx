@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ListItem from "./ListItem";
 import TodoForm from "./TodoForm";
 import { connect } from "react-redux";
+import { fetchTodos } from "../store/thunk/thunk";
 // import  styled  from 'styled-components';
 
 // const Wrapper = styled.div`
@@ -13,7 +14,13 @@ import { connect } from "react-redux";
 // `
 
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, loadAll }) => {
+
+    useEffect(() => {
+        loadAll()
+
+    }, [])
+
     return (
         <div className="">
             <TodoForm />
@@ -30,8 +37,13 @@ const mapStateToProps = (state) => ({
 
 })
 
+const mapDispatchToProps = (dispatch) => ({
+    loadAll: () => dispatch(fetchTodos())
 
-export default connect(mapStateToProps) (TodoList);
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (TodoList);
 
 
 
