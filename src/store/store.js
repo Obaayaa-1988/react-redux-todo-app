@@ -2,12 +2,14 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware } f
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { todos } from './reducers/reducer';
+import { loading } from './reducers/reducer';
 
 /*userReducer, todoReducer, permissionReducer*/
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk)) 
 
 const reducers = {
-    todos
+    todos,
+    loading
     
 };
 

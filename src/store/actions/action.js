@@ -9,22 +9,43 @@ export const COMPLETE_TODO = 'COMPLETED_TODO'
 //returning an object in a function
 //actions are dispatch to the reducer
 
+// export const createTodo = (text) => ({
+//     type: CREATE_TODO,
+//     payload:{ text, isCompleted: false }
+
+// })
+
+//this is an action creator
 export const createTodo = (todo) => ({
     type: CREATE_TODO,
-    payload:{ todo }
+    payload:{ todo}
 
 })
 
-export const deleteTodo = (text) => ({
+
+// export const deleteTodo = (text) => ({
+//     type: DELETE_TODO,
+//     payload:{ text }
+
+// })
+
+
+export const deleteTodo = (id) => ({
     type: DELETE_TODO,
-    payload:{ text }
+    payload:{ id }
 
 })
 
-export const displayTodo = (text) => ({
+
+
+
+export const statusTodo = (id) => ({
     type: COMPLETE_TODO,
-    payload: {text}
+    payload: {id}
 })
+
+
+
 
 
 //action for thunk asyncronous request 

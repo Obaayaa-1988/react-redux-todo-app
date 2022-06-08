@@ -1,8 +1,12 @@
 //a thunk is a function that returns another fashion
 //thunk accepts dispatch and getState
+//redux thunk is also a middleware used to perform asyncronous action
+//thunk takes the responsibility of actions they dispatch thunks
 import axios from "axios"
 import { FETCH_TODOS, getTodos, loadingTodosInProgress, todosFailure, todosSuccessful } from "../actions/action"
 import { createTodo } from "../actions/action"
+import { deleteTodo } from "../actions/action"
+import { statusTodo } from "../actions/action"
 
 export const testingThunk = () => ()=> {
 
@@ -37,8 +41,8 @@ export const fetchTodos = () => async (dispatch, getState) => {
 
         const response = await axios.get("http://localhost:9080/all-todos");
 
-        dispatch(getTodos(response.data))
-
+        dispatch(getTodos(response.data))//response.data are the arguement from the action creators(payload)
+       //dispatching the gettodos from the actioncreator and it goes to the reducer to grab the state there
     //    console.log(response.data)
         // dispatch(todosSuccessful(response.data))
         console.log('this is the state',getState())
@@ -62,6 +66,49 @@ export const addTodo =  (text) => async (dispatch) => {
         const { data } = response
 
         dispatch(createTodo(data))
+        
+    } catch (error) {
+
+        console.log(error)
+        
+    }
+
+}
+
+
+
+//deleting  a todo logic at listItem connecting to backend api
+
+export const clearTodo =  (id) => async (dispatch) => {
+    try {
+        const response = await axios.delete(`http://localhost:9080/delete-todo/${id}`, {
+            
+        });
+
+        const { data } = response
+
+        dispatch(deleteTodo(data))
+        
+    } catch (error) {
+
+        console.log(error)
+        
+    }
+
+}
+
+
+//deleting  a todo logic at listItem connecting to backend api
+
+export const updateTodo =  (id) => async (dispatch) => {
+    try {
+        const response = await axios.put(`http://localhost:9080/update-todo/${id}`, {
+            
+        });
+
+        const { data } = response
+
+        dispatch(statusTodo(data))
         
     } catch (error) {
 

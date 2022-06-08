@@ -12,8 +12,7 @@ import { LOAD_TODOS, TODOS_LOADING, TODOS_SUCCESS, TODOS_FAILURE } from './../ac
 export const todos = (state = [], action) => {
 
     switch (action.type) {
-
-           
+     
         case CREATE_TODO: {
 
             return [...state, action.payload.todo]
@@ -29,10 +28,22 @@ export const todos = (state = [], action) => {
         // };
 
 
+        // case DELETE_TODO: {
+        //     const clearTodo = state.filter((list) => list.text !== action.payload.text)
+        //     return [...clearTodo]
+        // }
+
+
         case DELETE_TODO: {
-            const clearTodo = state.filter((list) => list.text !== action.payload.text)
-            return [...clearTodo]
+            console.log("this is delete action", action) 
+
+            return action.payload.id
+
         }
+
+
+
+
 
         // case COMPLETE_TODO: {
         //     if(state.isCompleted !== action.payload.isCompleted){
@@ -40,18 +51,28 @@ export const todos = (state = [], action) => {
         //     } 
         // }
 
-        case COMPLETE_TODO: {
-            return state.map(task => {
-                if (task.text === action.payload.text) {
-                    return { ...task, isCompleted: !task.isCompleted }
-                }
+        // case COMPLETE_TODO: {
+        //     return state.map(task => {
+        //         if (task.text === action.payload.text) {
+        //             return { ...task, isCompleted: !task.isCompleted }
+        //         }
 
-                return task;
-            })
+        //         return task;
+        //     })
+        // }
+
+
+
+        case COMPLETE_TODO: {
+        
+                 return action.payload.id  
         }
 
+
+
+
         case LOAD_TODOS: {
-            console.log(action)
+            //console.log(action)
             return action.payload.data
         }
 

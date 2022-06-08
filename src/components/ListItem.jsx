@@ -1,11 +1,14 @@
 import React from "react";
-import  styled  from 'styled-components';
-import  { css } from 'styled-components';
+import styled from 'styled-components';
+import { css } from 'styled-components';
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { deleteTodo } from "../store/actions/action";
 // import { useDispatch } from "react-redux";
-import { displayTodo } from "../store/actions/action";
+import { statusTodo } from "../store/actions/action";
 import { fetchTodos, testingThunk } from "../store/thunk/thunk";
+import { clearTodo } from "../store/thunk/thunk";
+import { updateTodo } from "../store/thunk/thunk";
 
 
 const Wrapper = styled.div`
@@ -22,7 +25,7 @@ justify-content: space-between;
 width: 71%;
 `
 
-const BtnContainer = styled.div `
+const BtnContainer = styled.div`
 display: flex;
 gap: 1rem
 `
@@ -32,13 +35,13 @@ border: none;
 border-radius: 8px;
 outline: none;
 cursor: pointer;
-${props => props.completed && css `
+${props => props.completed && css`
 background-color: blueviolet;
 color: white;
 
 `}
 
-${props => props.delete && css `
+${props => props.delete && css`
 background-color: red;
 color: white;
 
@@ -47,31 +50,36 @@ color: white;
 `
 
 
-const ListItem = ({ task, removeTodo, updateTodo}) => {
+const ListItem = ({ task, removeTodo, changeTodo }) => {
+    // useEffect(() => {
+    //     removeTodo()
+
+    // }, [removeTodo])
 
 
 
 
-    return(
+    return (
         <div className="item-container">
-            
+
             <Wrapper>
-            <h3 >{task.text}</h3>
-            <BtnContainer>
-            {
-                task.isCompleted ?  <Button  completed onClick={() => { updateTodo(task.text)}}>Change To InCompleted
-                
-                </Button> : (
-                    <Button  completed onClick={() => { updateTodo(task.text)}}>Change To Completed</Button>
+                <h3 >{task.text}</h3>
+                <BtnContainer>
+                    {
+                        task.isCompleted ? <Button completed onClick={() => { changeTodo(task.id) }}>pending
+
+                        </Button> : (
+                            <Button completed onClick={() => { changeTodo(task.id) }}>done</Button>
 
 
-                )} 
+                        )}
 
+                    <Button delete onClick={() => { removeTodo(task.id) }}>Delete</Button>
 
-            <Button delete onClick={() => { removeTodo(task.text)}}>Delete</Button>
-            {/* <Button delete onClick={() => { removeTodo()}}>Delete</Button> */}
+                    {/* <Button delete onClick={() => { removeTodo(task.text) }}>Delete</Button> */}
+                    {/* <Button delete onClick={() => { removeTodo()}}>Delete</Button> */}
 
-            </BtnContainer>
+                </BtnContainer>
             </Wrapper>
 
         </div>
@@ -82,9 +90,11 @@ const ListItem = ({ task, removeTodo, updateTodo}) => {
 
 
 const mapDispatchToProps = (dispatch) => ({
-    removeTodo: (text) => dispatch(deleteTodo(text)),
+    // removeTodo: (text) => dispatch(deleteTodo(text)),
+    removeTodo: (id) => dispatch(clearTodo(id)),
 
-    updateTodo: text => dispatch(displayTodo(text))
+
+    changeTodo: (id) => dispatch(updateTodo(id))
 
 
 
