@@ -16,6 +16,8 @@ export const COMPLETE_TODO = 'COMPLETED_TODO'
 // })
 
 //this is an action creator
+////thunk asyncronous request for adding  a new todo to the database
+
 export const createTodo = (todo) => ({
     type: CREATE_TODO,
     payload:{ todo}
@@ -29,7 +31,7 @@ export const createTodo = (todo) => ({
 
 // })
 
-
+//thunk asyncronous request for deleting a todo from the databse
 export const deleteTodo = (id) => ({
     type: DELETE_TODO,
     payload:{ id }
@@ -37,7 +39,7 @@ export const deleteTodo = (id) => ({
 })
 
 
-
+//thunk ansyncronous for updating the todo from pending to done in the database
 
 export const statusTodo = (id) => ({
     type: COMPLETE_TODO,
@@ -48,7 +50,8 @@ export const statusTodo = (id) => ({
 
 
 
-//action for thunk asyncronous request 
+//action for thunk asyncronous request for fetching all todos from the database
+//using useeffect for
 export const LOAD_TODOS = 'LOAD_TODOS'
 
 export const getTodos = (data) => ({

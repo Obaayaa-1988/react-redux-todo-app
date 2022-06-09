@@ -5,6 +5,7 @@ import { todos } from './reducers/reducer';
 import { loading } from './reducers/reducer';
 
 /*userReducer, todoReducer, permissionReducer*/
+//adding thunk to the store
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk)) 
 
 const reducers = {

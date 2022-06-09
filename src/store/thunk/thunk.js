@@ -33,7 +33,7 @@ export const testingThunk = () => ()=> {
 // }
 
 
-//connecting to the backend api fetching all todos from the api backend/ todolist component
+//connecting to the backend api fetching all todos from the api backend/ add this at todolist component
 export const fetchTodos = () => async (dispatch, getState) => {
     try {
 
