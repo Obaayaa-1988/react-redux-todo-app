@@ -19,7 +19,7 @@ const TodoList = ({ todos, loadAll }) => {
     useEffect(() => {
         loadAll()
 
-    }, [])
+    }, [loadAll])
 
     return (
         <div className="">

@@ -66,10 +66,10 @@ const ListItem = ({ task, removeTodo, changeTodo }) => {
                 <h3 >{task.text}</h3>
                 <BtnContainer>
                     {
-                        task.isCompleted ? <Button completed onClick={() => { changeTodo(task.id) }}>pending
+                        task.isCompleted ? <Button completed onClick={() => { changeTodo(task.id) }}>done
 
                         </Button> : (
-                            <Button completed onClick={() => { changeTodo(task.id) }}>done</Button>
+                            <Button completed onClick={() => { changeTodo(task.id) }}>pending</Button>
 
 
                         )}

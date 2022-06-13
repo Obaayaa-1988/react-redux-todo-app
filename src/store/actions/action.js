@@ -31,8 +31,8 @@ export const createTodo = (todo) => ({
 
 // })
 
-//thunk asyncronous request for deleting a todo from the databse
-export const deleteTodo = (id) => ({
+//thunk asyncronous request for deleting a todo from the database
+export const deleteTodo = ( id ) => ({
     type: DELETE_TODO,
     payload:{ id }
 
@@ -43,7 +43,7 @@ export const deleteTodo = (id) => ({
 
 export const statusTodo = (id) => ({
     type: COMPLETE_TODO,
-    payload: {id}
+    payload: { id }
 })
 
 

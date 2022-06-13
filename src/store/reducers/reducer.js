@@ -36,9 +36,7 @@ export const todos = (state = [], action) => {
 
         case DELETE_TODO: {
             console.log("this is delete action", action) 
-
             return action.payload.id
-
         }
 
 
@@ -62,10 +60,9 @@ export const todos = (state = [], action) => {
         // }
 
 
-
-        case COMPLETE_TODO: {
-        
-                 return action.payload.id  
+//updating a todo status
+        case COMPLETE_TODO: {   
+         return action.payload.id  
         }
 
 
