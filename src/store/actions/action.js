@@ -1,7 +1,7 @@
 //so we can make changes to it anytime
 export const CREATE_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETED_TODO';
-export const COMPLETE_TODO = 'COMPLETED_TODO'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
 
 //exporting createtodo
 /* action creators return an object containing type and payload, they are functions they contain an object */
@@ -42,7 +42,7 @@ export const deleteTodo = ( id ) => ({
 //thunk ansyncronous for updating the todo from pending to done in the database
 
 export const statusTodo = (id) => ({
-    type: COMPLETE_TODO,
+    type: TOGGLE_TODO,
     payload: { id }
 })
 
@@ -61,7 +61,7 @@ export const getTodos = (data) => ({
 
 
 
-
+//todos loading only initial loading
 export const TODOS_LOADING = "TODOS_LOADING"
 
 export const loadingTodosInProgress = () => ({
@@ -69,15 +69,17 @@ export const loadingTodosInProgress = () => ({
 })
 
 
+//todos success when loading
+
 export const TODOS_SUCCESS ="TODOS_SUCCESS"
 
-export const todosSuccessful = (todos,) => ({
+export const todosSuccessful = () => ({
     type: TODOS_SUCCESS,
-    payload: { todos }
+    
 })
 
 
-
+//todos failure
 
 export const TODOS_FAILURE = "TODOS_FAILURE"
 

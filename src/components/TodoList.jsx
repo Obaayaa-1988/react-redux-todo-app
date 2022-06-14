@@ -14,14 +14,18 @@ import { fetchTodos } from "../store/thunk/thunk";
 // `
 
 
-const TodoList = ({ todos, loadAll }) => {
+const TodoList = ({ todos, loadAll, startedLoading }) => {
+    console.log('loading girls',startedLoading)
 
     useEffect(() => {
         loadAll()
 
     }, [loadAll])
 
-    return (
+    const load = <h2 style={{textAlign: "center"}}>Loading Todos Here......</h2>
+
+
+    const loadWrap = (
         <div className="">
             <TodoForm />
 
@@ -29,13 +33,20 @@ const TodoList = ({ todos, loadAll }) => {
             ))}
         </div>
     );
+
+
+    return startedLoading ? load : loadWrap
+
 };
 
 const mapStateToProps = (state) => ({
-    todos: state.todos
+    todos: state.todos,
+    startedLoading: state.loading
 
 
 })
+
+//loading coming fro
 
 const mapDispatchToProps = (dispatch) => ({
     loadAll: () => dispatch(fetchTodos())

@@ -59,7 +59,7 @@ const ListItem = ({ task, removeTodo, changeTodo }) => {
 
 
 
-    return (
+     return (
         <div className="item-container">
 
             <Wrapper>
@@ -84,10 +84,11 @@ const ListItem = ({ task, removeTodo, changeTodo }) => {
 
         </div>
     )
+
+    // const load = <h2 style={{textAlign: "center"}}>Loading Todos Here......</h2>
+    // return initLoad ? load : loadWrap
+
 }
-
-
-
 
 const mapDispatchToProps = (dispatch) => ({
     // removeTodo: (text) => dispatch(deleteTodo(text)),

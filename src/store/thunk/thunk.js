@@ -8,7 +8,7 @@ import { createTodo } from "../actions/action"
 import { deleteTodo } from "../actions/action"
 import { statusTodo } from "../actions/action"
 
-export const testingThunk = () => ()=> {
+export const testingThunk = () => () => {
 
 }
 
@@ -23,12 +23,12 @@ export const testingThunk = () => ()=> {
 //         //dispatch(getTodos(response.data))
 
 //         dispatch(todosSuccessful(response.data))
-        
+
 //     } catch (error) {
 //         console.log(error)
 
 //         dispatch(todosFailure())
-        
+
 //     }
 // }
 
@@ -37,27 +37,27 @@ export const testingThunk = () => ()=> {
 export const fetchTodos = () => async (dispatch, getState) => {
     try {
 
-        // dispatch(loadingTodosInProgress())
+         dispatch(loadingTodosInProgress())
 
         const response = await axios.get("http://localhost:9080/all-todos");
 
         dispatch(getTodos(response.data))//response.data are the arguement from the action creators(payload)
-       //dispatching the gettodos from the action creator and it goes to the reducer to grab the state there
-    //    console.log(response.data)
-        // dispatch(todosSuccessful(response.data))
-        console.log('this is the state',getState())
-        
+        //dispatching the gettodos from the action creator and it goes to the reducer to grab the state there
+        //    console.log(response.data)
+         dispatch(todosSuccessful())
+        console.log('this is the state', getState())
+
     } catch (error) {
         console.log(error)
 
-        // dispatch(todosFailure())
-        
+         dispatch(todosFailure())
+
     }
 }
 
 //adding a todo logic at todoform connecting to backend api
 
-export const addTodo =  (text) => async (dispatch) => {
+export const addTodo = (text) => async (dispatch) => {
     try {
         const response = await axios.post("http://localhost:9080/create-todos", {
             text
@@ -66,11 +66,11 @@ export const addTodo =  (text) => async (dispatch) => {
         const { data } = response
 
         dispatch(createTodo(data))
-        
+
     } catch (error) {
 
         console.log(error)
-        
+
     }
 
 }
@@ -78,20 +78,24 @@ export const addTodo =  (text) => async (dispatch) => {
 
 
 //deleting  a todo logic at listItem connecting to backend api
-
-export const clearTodo =  (id) => async (dispatch) => {
+export const clearTodo = (id) => async (dispatch) => {
     try {
-        const response = await axios.delete(`http://localhost:9080/delete-todo/${id}` );
+        const response = await axios.delete(`http://localhost:9080/delete-todo/${id}`);
 
-        const { data } = response
-        console.log("hi data", data)
+        // const { data } = response
+        //console.log("hi data", response.items)
+        //console.log("hi data", response.items)
+        console.log("hi data", response.data)
+        console.log("hi idddddddd", id)
+        console.log("hi responseeeee", response.data.id)
 
-        dispatch(deleteTodo(data))
-        
+
+        dispatch(deleteTodo(id))
+
     } catch (error) {
 
         console.log(error)
-        
+
     }
 
 }
@@ -99,20 +103,20 @@ export const clearTodo =  (id) => async (dispatch) => {
 
 //deleting  a todo logic at listItem connecting to backend api
 
-export const updateTodo =  (id) => async (dispatch) => {
+export const updateTodo = (id) => async (dispatch) => {
     try {
         const response = await axios.put(`http://localhost:9080/update-todo/${id}`);
 
         const { data } = response
-        console.log("hi todo", data )
+        console.log("hi todo", data)
 
-        dispatch(statusTodo(data.id))
-        console.log("hiii", data.id)
-        
+        dispatch(statusTodo(id))
+        //console.log("hiii", data.id)
+
     } catch (error) {
 
         console.log(error)
-        
+
     }
 
 }

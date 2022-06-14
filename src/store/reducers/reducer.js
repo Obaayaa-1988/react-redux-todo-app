@@ -1,4 +1,4 @@
-import { COMPLETE_TODO, CREATE_TODO } from './../actions/action'
+import { TOGGLE_TODO, CREATE_TODO } from './../actions/action'
 import { DELETE_TODO } from './../actions/action';
 import { LOAD_TODOS, TODOS_LOADING, TODOS_SUCCESS, TODOS_FAILURE } from './../actions/action';
 
@@ -12,7 +12,7 @@ import { LOAD_TODOS, TODOS_LOADING, TODOS_SUCCESS, TODOS_FAILURE } from './../ac
 export const todos = (state = [], action) => {
 
     switch (action.type) {
-     
+
         case CREATE_TODO: {
 
             return [...state, action.payload.todo]
@@ -28,42 +28,40 @@ export const todos = (state = [], action) => {
         // };
 
 
+
+        case DELETE_TODO: {
+            // console.log("this")
+            const remove = state.filter(task => task.id !== action.payload.id)
+            console.log("hhhhdhjjj", remove)
+            return remove
+
+
+        }
+
+
+
         // case DELETE_TODO: {
-        //     const clearTodo = state.filter((list) => list.text !== action.payload.text)
+        //     const clearTodo = state.filter((list) => list.bay !== action.payload.bay)
         //     return [...clearTodo]
         // }
 
 
-        case DELETE_TODO: {
-            console.log("this is delete action", action) 
-            return action.payload.id
+
+        case TOGGLE_TODO: {
+            return state.map(task => {
+                if (task.id === action.payload.id) {
+                    return { ...task, isCompleted: !task.isCompleted }
+                }
+
+                return task;
+            })
         }
 
 
-
-
-
-        // case COMPLETE_TODO: {
-        //     if(state.isCompleted !== action.payload.isCompleted){
-        //         return state
-        //     } 
+        //updating a todo status
+        // case COMPLETE_TODO: {   
+        //  return action.payload.id  
         // }
-
-        // case COMPLETE_TODO: {
-        //     return state.map(task => {
-        //         if (task.text === action.payload.text) {
-        //             return { ...task, isCompleted: !task.isCompleted }
-        //         }
-
-        //         return task;
-        //     })
-        // }
-
-
-//updating a todo status
-        case COMPLETE_TODO: {   
-         return action.payload.id  
-        }
 
 
 
@@ -85,27 +83,25 @@ export const todos = (state = [], action) => {
 export const loading = (isLoading = false, action) => {
     switch (action.type) {
         case TODOS_LOADING: {
-            return isLoading = true;
+            return  true;
 
         }
 
         case TODOS_SUCCESS: {
-            return {
-                isLoading: false,
-                data: action.payload.todos
-            }
+            
+                return false;   
         }
 
         case TODOS_FAILURE: {
+            return  false
 
         }
 
-
-        default: 
-        return isLoading
+        default:
+            return isLoading
     }
-    
-   
+
+
 }
 
 
