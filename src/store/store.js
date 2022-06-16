@@ -10,7 +10,7 @@ const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
 const reducers = {
     todos,
-    loading
+    // loading
     
 };
 

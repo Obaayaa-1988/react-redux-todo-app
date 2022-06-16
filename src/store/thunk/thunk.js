@@ -44,7 +44,9 @@ export const fetchTodos = () => async (dispatch, getState) => {
         dispatch(getTodos(response.data))//response.data are the arguement from the action creators(payload)
         //dispatching the gettodos from the action creator and it goes to the reducer to grab the state there
         //    console.log(response.data)
+
          dispatch(todosSuccessful())
+         
         console.log('this is the state', getState())
 
     } catch (error) {

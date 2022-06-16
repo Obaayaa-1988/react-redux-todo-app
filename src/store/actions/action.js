@@ -50,7 +50,7 @@ export const statusTodo = (id) => ({
 
 
 
-//action for thunk asyncronous request for fetching all todos from the database
+//action for thunk asyncronous request for fetching all todos from the database action creator for it
 //using useeffect for
 export const LOAD_TODOS = 'LOAD_TODOS'
 
@@ -61,9 +61,8 @@ export const getTodos = (data) => ({
 
 
 
-//todos loading only initial loading
+//todos loading only initial loading 
 export const TODOS_LOADING = "TODOS_LOADING"
-
 export const loadingTodosInProgress = () => ({
     type: TODOS_LOADING
 })

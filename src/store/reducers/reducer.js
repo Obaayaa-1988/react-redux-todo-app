@@ -8,15 +8,74 @@ import { LOAD_TODOS, TODOS_LOADING, TODOS_SUCCESS, TODOS_FAILURE } from './../ac
  * //reducer gives details of what the state needs to perform
  * 
  */
-
-export const todos = (state = [], action) => {
+//combining the todos reducer and loading reducer as one
+export const todos = (state = {data:[], loading: false}, action) => {
 
     switch (action.type) {
 
         case CREATE_TODO: {
 
-            return [...state, action.payload.todo]
+         return {
+            ...state,
+            data: [...state.data, action.payload.todo]
+
+          }
+             
         };
+
+        case DELETE_TODO: {
+            return {
+                ...state,
+                data: state.data.filter(task => task.id !== action.payload.id)
+            }
+        }
+
+
+        case TOGGLE_TODO: {
+               return {
+                ...state,
+             data: state.data.map(task => {
+                if (task.id === action.payload.id) {
+                    return { ...task, isCompleted: !task.isCompleted }
+                }
+
+                return task;
+            })
+        }
+    }
+
+        case LOAD_TODOS: {
+           return {
+            ...state,
+            loading: false,
+            data: action.payload.data
+            }
+             
+        }
+
+        case TODOS_LOADING: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case TODOS_SUCCESS: {
+            return{
+                ...state,
+                loading: false
+            }
+        }
+
+        case TODOS_FAILURE: {
+            return{
+                ...state,
+                loading: false
+            }
+        }
+
+
+
 
 
         // case CREATE_TODO: {
@@ -27,49 +86,35 @@ export const todos = (state = [], action) => {
         //     return [...state, newTodo]
         // };
 
-
-
-        case DELETE_TODO: {
-            // console.log("this")
-            const remove = state.filter(task => task.id !== action.payload.id)
-            console.log("hhhhdhjjj", remove)
-            return remove
-
-
-        }
-
-
-
+        // case DELETE_TODO: {
+        //     // console.log("this")
+        //     const remove = state.filter(task => task.id !== action.payload.id)
+        //     //console.log("hhhhdhjjj", remove)
+        //     return remove
+        // }
         // case DELETE_TODO: {
         //     const clearTodo = state.filter((list) => list.bay !== action.payload.bay)
         //     return [...clearTodo]
         // }
+        // case TOGGLE_TODO: {
+        //     return state.map(task => {
+        //         if (task.id === action.payload.id) {
+        //             return { ...task, isCompleted: !task.isCompleted }
+        //         }
 
-
-
-        case TOGGLE_TODO: {
-            return state.map(task => {
-                if (task.id === action.payload.id) {
-                    return { ...task, isCompleted: !task.isCompleted }
-                }
-
-                return task;
-            })
-        }
-
-
-        //updating a todo status
-        // case COMPLETE_TODO: {   
-        //  return action.payload.id  
+        //         return task;
+        //     })
+        // }
+        //fetching todos from the sevre
+        // case LOAD_TODOS: {
+        //     //console.log(action)
+        //     return action.payload.data
         // }
 
 
 
 
-        case LOAD_TODOS: {
-            //console.log(action)
-            return action.payload.data
-        }
+       
 
 
         default:
@@ -78,31 +123,32 @@ export const todos = (state = [], action) => {
 }
 
 
-//second reducer for thunk connection
+//second reducer for thunk connection this is for when a todo is being fetched from the backend
+//
 
-export const loading = (isLoading = false, action) => {
-    switch (action.type) {
-        case TODOS_LOADING: {
-            return  true;
+// export const loading = (isLoading = false, action) => {
+//     switch (action.type) {
+//         case TODOS_LOADING: {
+//             return  true;
 
-        }
+//         }
 
-        case TODOS_SUCCESS: {
+//         case TODOS_SUCCESS: {
             
-                return false;   
-        }
+//                 return false;   
+//         }
 
-        case TODOS_FAILURE: {
-            return  false
+//         case TODOS_FAILURE: {
+//             return  false
 
-        }
+//         }
 
-        default:
-            return isLoading
-    }
+//         default:
+//             return isLoading
+//     }
 
 
-}
+// }
 
 
 

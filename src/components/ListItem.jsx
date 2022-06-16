@@ -60,6 +60,7 @@ const ListItem = ({ task, removeTodo, changeTodo }) => {
 
 
      return (
+        <div className="backs">
         <div className="item-container">
 
             <Wrapper>
@@ -82,6 +83,7 @@ const ListItem = ({ task, removeTodo, changeTodo }) => {
                 </BtnContainer>
             </Wrapper>
 
+        </div>
         </div>
     )
 
